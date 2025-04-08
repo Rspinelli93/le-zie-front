@@ -1,113 +1,83 @@
-# Le Zie - Online Second-Hand Shop
+# 🧥 LE ZIE - Vintage Clothing Web App – Frontend
 
-## Version 1.0
-Le Zie is an online second-hand shop designed to make it easy for admins to manage inventory while providing a smooth shopping experience for users. This project is built with **React + Vite** for the frontend and connects to a **MongoDB** database through a backend API.
-
-The backend is secured so that only the admin can add, update, and remove items via a form-based admin panel. The frontend consumes the backend API to display products to customers in a user-friendly interface.
-
-## Features
-- **User Side:**
-  - Browse second-hand clothing items
-  - View product details
-  - Customers may, through a form and a specific designated ID for each product, contact the admin to arrange an in-person pickup of the clothes.
-  - Filter and search for products
-
-- **Admin Side:**
-  - Secure login for inventory management
-  - Add new products via a form
-  - Edit and update product details
-  - Mark products as reserved
-  - Delete products from the shop
-
-## Project Structure
-The project is structured as follows:
-
-```
-le-zie-frontend/
-│── public/             # Static assets (images, icons, etc.)
-│── src/
-│   ├── api/            # API service functions to interact with the backend
-│   ├── components/     # Reusable UI components (buttons, product cards, etc.)
-│   ├── pages/          # Page components (Home, Product, Admin, etc.)
-│   ├── routes/         # React Router setup
-│   ├── context/        # Context API for global state management (Auth, Cart, etc.)
-│   ├── styles/         # CSS/SCSS stylesheets or Tailwind setup
-│   ├── utils/          # Helper functions (formatting, validation, etc.)
-│   ├── App.jsx         # Main application file
-│   ├── main.jsx        # Vite entry point
-│── .env                # Environment variables (API URLs, etc.)
-│── package.json        # Project dependencies and scripts
-│── vite.config.js      # Vite configuration
-```
-
-## Getting Started
-
-### Prerequisites
-Ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (LTS recommended)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/le-zie.git
-   cd le-zie-frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Set up environment variables:
-   - Create a `.env` file in the root directory.
-   - Add the backend API URL:
-     ```env
-     VITE_API_BASE_URL=http://your-backend-url.com/api
-     ```
-
-### Running the Development Server
-To start the project locally:
-```bash
-npm run dev
-```
-The application will be available at `http://localhost:5173` by default.
-
-## API Communication
-The frontend communicates with the backend using `fetch` or `axios`. Here are the main API endpoints:
-
-- **Products:**
-  - `GET /products` - Fetch all products
-  - `GET /products/:id` - Fetch product details
-  
-- **Admin Actions (Requires Authentication):**
-  - `POST /admin/create` - Add a new product
-  - `PUT /admin/edit/:id` - Edit product details
-  - `PUT /admin/reserve/:id` - Mark a product as reserved
-  - `DELETE /admin/delete/:id` - Remove a product
-  
-- **Admin Authentication:**
-  - `POST /admin/login` - Admin login
-  - `POST /admin/register` - Admin registration
-  - `DELETE /admin/logout` - Admin logout
-
-## Deployment
-To build the project for production:
-```bash
-npm run build
-```
-This will generate a `dist/` folder with optimized assets. Deploy this folder to your preferred hosting service (e.g., Netlify, Vercel, or Firebase Hosting).
-
-## Version 2.0 Roadmap
-- Implement a shopping cart and checkout system
-- Enhance UI/UX with animations and better product filtering
-- Add user authentication for order tracking
-- Optimize performance with lazy loading and image optimization
-- Implement online selling functionality
-
-## License
-This project is licensed under the MIT License.
+This is the **frontend** of a vintage clothing web application. It allows **users** to browse a curated collection of vintage clothing items. On the **admin** side, it provides tools to manage the inventory by adding, editing, deleting, and marking items as sold. The frontend connects to a backend database via API calls and handles all interactions with both users and admins through clearly defined routes and dynamic interfaces.
 
 ---
 
-### Notes
-This README provides a high-level overview of the frontend project. If you need further details, consider adding specific setup instructions for authentication, state management, or API integration.
+## 🧑‍💻 User Routes
 
+These are public-facing routes that regular users can access to browse and view clothing items.
+
+- `/home`  
+  General **landing page** with branding, featured items, or introductory content.
+
+- `/showroom`  
+  Displays a list or grid of **all available clothing items** from the database.
+
+- `/showroom/:id`  
+  Dynamic route that shows **details of a selected product**
+
+---
+
+## 🔐 Admin Routes
+
+These routes are restricted to authenticated admin users.
+
+- `/admin/login`  
+  Login page for admin access.
+
+- `/admin/showroom`  
+  Admin's view of the clothing inventory:
+  - See all products
+  - Edit or delete items
+  - Mark items as sold
+
+- `/admin/showroom/:id`  
+  Detailed view of a single item for the admin:
+  - Editable form to update product info
+  - "Delete" and "Mark as Sold" options
+
+- `/admin/form`  
+  Page to **add new clothing items** to the database. The form includes:
+  - **Name** (text input)
+  - **Categories** (checkboxes — allow multiple)
+  - **Colors** (checkboxes — allow multiple)
+  - **Images** (file upload — allow multiple images per product)
+  - **Decade** (dropdown)
+  - **Brand** (text input)
+  - **Price** (number input)
+  - **Size** (dropdown)
+  - **Season** (dropdown — only two options)
+
+---
+
+## ⚙️ Functionality
+
+- Fully dynamic routing using product IDs (`/showroom/:id`, `/admin/showroom/:id`)
+- Image upload support for multiple files per product
+- Complete CRUD functionality through frontend API calls:
+  - Create new product
+  - Read/display product data
+  - Update/edit existing product
+  - Delete product or mark as sold
+- Role-based navigation and view logic (admin vs. user)
+
+---
+
+## 🚀 To-Do – Version 2.0
+
+Planned features for future release:
+
+- Add full **shopping functionality**
+- Integrate **payment methods**
+- Shopping cart and checkout flow
+
+---
+
+## 🔗 Project Resources
+
+- [🖼️ Wireframes & UI Flow](https://richiscouses.my.canva.site/lezie#home)  
+  Visual overview of the layout, structure, and user interactions.
+
+- [🗂️ Trello Planning Board](https://trello.com/b/QqDnmPn8/le-zie)  
+  Task management and development roadmap.
