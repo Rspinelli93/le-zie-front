@@ -1,4 +1,4 @@
-import { apiUrl } from "../config/config.js";
+const apiUrl = 'http://localhost:3210'
 
 const GetProducts = async () => {
     try {

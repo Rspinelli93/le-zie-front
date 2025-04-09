@@ -81,3 +81,5 @@ Planned features for future release:
 
 - [🗂️ Trello Planning Board](https://trello.com/b/QqDnmPn8/le-zie)  
   Task management and development roadmap.
+
+- [📬 Postman](https://documenter.getpostman.com/view/41161776/2sB2cX91qN)
