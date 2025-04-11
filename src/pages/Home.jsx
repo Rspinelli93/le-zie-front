@@ -1,28 +1,53 @@
-import { useEffect, useState } from "react";
-import GetProducts from "../service/user/GetProducts.jsx";
+import './styles/home.css'
+import '../index.css'
+import { useNavigate } from 'react-router-dom';
+
+import ProductSuggestion from "../components/productSuggestion/ProductSuggestion.jsx"
+import Footer from "../components/footer/Footer.jsx"
+import Logo from "../assets/icons/logo_lezie.png"
+import Ecology from "../assets/icons/ecology.png"
+import Handpicked from "../assets/icons/love.png"
+import Sustainable from "../assets/icons/sustainable.png"
+import PinkBackground from '../components/backgroundPink/BackgroundPink.jsx';
 
 const Home = () => {
-    const [products, setProducts] = useState([]);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        GetProducts()
-            .then((data) => {
-                const newArrivals = data.slice(-3);
-                setProducts(newArrivals);
-            })
-            .catch((err) => setError(err.message));
-    }, []);
-
+    const navigate = useNavigate();
     return (
-        <div>
-            <h1>Home Page</h1>
-            {error ? (
-                <p style={{ color: "red" }}>Error: {error}</p>
-            ) : (
-                <pre>{JSON.stringify(products, null, 2)}</pre>
-            )}
+    <>
+        <div className="home-intro">
+            <img src={Logo} alt="logo_lezie" />
+            <h1>VINTAGE FINDS MODERN VIBES</h1>
+            <div>
+                <p>Shop Sustainable, Shop Stylish –
+                Pre-Loved Treasures Await</p>
+                <button onClick={() => navigate("/collection")}>EXPLORE HERE</button>
+            </div>
         </div>
+        <div className="home-moto">
+            <h2>WE BELIVE IN SECOND CHANCES</h2>
+            <ul>
+                <li>
+                    <p>Every piece handpicked with love</p>
+                    <img src={Handpicked} alt="handpicked_logo" />
+                </li>
+                <li>
+                    <p>Sustainable choices, naturally made</p>
+                    <img src={Sustainable} alt="sustainability_logo" />
+                </li>
+                <li>
+                    <p>Worn before, loved again</p>
+                    <img src={Ecology} alt="ecology_logo" />
+                </li>
+            </ul>
+        </div>
+        <ProductSuggestion
+            title="NEW ARRIVALS"
+            filterProp={(data) => data.slice(-3)}
+        />
+        <PinkBackground />
+        <Footer />
+    </>
+
     );
 };
 

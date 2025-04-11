@@ -1,16 +1,16 @@
 import './App.css';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import { ScrollProvider } from './contexts/ScrollContext';
+import { SearchProvider } from "./contexts/SearchContext";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
+    <SearchProvider>
+      <ScrollProvider>
+        <Outlet />
+      </ScrollProvider>
+    </SearchProvider>
   );
 }
 

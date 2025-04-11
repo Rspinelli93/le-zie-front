@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import Header from '../components/header/Header'
 
 const AddProduct = () => {
     const [product, setProduct] = useState({
@@ -52,7 +53,10 @@ const AddProduct = () => {
     };
 
     return (
+        <>
+
         <div>
+            <Header />
             <h1>Add Product</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -176,6 +180,7 @@ const AddProduct = () => {
                 <button type="submit">Add Product</button>
             </form>
         </div>
+        </>
     );
 };
 

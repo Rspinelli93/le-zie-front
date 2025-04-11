@@ -1,47 +1,39 @@
-import './Footer.css'
+import './footer.css'
+import { FaArrowAltCircleRight, FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa6";
+import { useScroll } from '../../contexts/ScrollContext';
 
 const Footer = () => {
+    const { footerRef } = useScroll();
     return (
-        <footer className="footer">
-            <div className="footer-container">
-                <div>
-                <h6 className="footer-title">Social Media</h6>
-                <ul className="footer-list">
-                    <li>Instagram</li>
-                    <li>Facebook</li>
-                </ul>
-                </div>
-
-                <div>
-                <h6 className="footer-title">Contact Info</h6>
-                <ul className="footer-list">
-                    <li>21 Routes des jeunes</li>
-                    <li>Carouge 1227 | Switzerland</li>
-                    <li>info@le-zie.ch</li>
-                    <li>+41 78 123 456</li>
-                </ul>
-                </div>
-
-                <div>
-                <h6 className="footer-title">Legal Stuff</h6>
-                <ul className="footer-list">
-                    <li>Legal Notices</li>
-                    <li>Terms & Conditions</li>
-                    <li>Privacy Policy</li>
-                </ul>
-                </div>
-
-                <div>
-                <h5 className="footer-title">Want to know where we’ll be next?</h5>
-                <div className="newsletter">
-                    <input type="email" placeholder="Subscribe to our Newsletter" className="newsletter-input" />
-                    <button className="newsletter-button">➡️</button>
-                </div>
-                </div>
+        <footer className="footer" ref={footerRef}>
+            <div className='footer-title'>
+                <h2>REACH OUT FOR INQUIRIES</h2>
+                {/* Missing image, done when class is done in index for backgorunf imahges */}
             </div>
-
-            <div className="footer-bottom">
-                © 2025 Le Zie   |   All Rights Reserved.
+            <ul className='footer-list'>
+                <li>
+                    <h6>PHONE</h6>
+                    <p>+41 12 345 6789</p>
+                </li>
+                <li>
+                    <h6>EMAIL</h6>
+                    <p>info@lezie.ch</p>
+                </li>
+                <li>
+                    <h6>SOCIAL</h6>
+                    <div>
+                    <FaInstagram />
+                    <FaFacebook />
+                    </div>
+                </li>
+            </ul>
+            <div className='footer-bottom'>
+                <h2>GET THE LATEST NEWS</h2>
+                <div className='footer-input'>
+                    <input type="email" placeholder='Type your email to subscribe to our newsletter'/>
+                    <button><FaArrowAltCircleRight /></button>
+                </div>
             </div>
         </footer>
     )

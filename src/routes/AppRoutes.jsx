@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         { path: 'collection', element: <Collection /> },
         { path: 'product/:id', element: <ProductDetails /> },
 
-        { path: 'login-admin', element: <LoginAdmin /> },
+        { path: 'admin/login', element: <LoginAdmin /> },
         { path: 'admin/add', element: <AddProduct />, loader: requireAdminAuth },
         { path: 'admin/edit/:id', element: <AdminProductDetails />, loader: requireAdminAuth },
         { path: 'admin/collection', element: <AdminCollection />, loader: requireAdminAuth },

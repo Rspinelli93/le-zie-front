@@ -1,34 +1,73 @@
-import React from "react";
 import "./Header.css";
+import { FaSearch } from "react-icons/fa";
+import { useNavigate, useLocation  } from 'react-router-dom';
+import { useScroll } from '../../contexts/ScrollContext';
+import { useSearch } from "../../contexts/SearchContext";
+
+import Logo from "../../assets/icons/logo_lezie.png"
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation(); 
+  const { scrollToFooter } = useScroll();
+  const { searchQuery, setSearchQuery } = useSearch();
+
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value);
+    if (window.location.pathname !== "/collection") {
+      navigate("/collection");
+    }
+  };
+  const isAdminCollection = location.pathname === '/admin/collection';
+  const isAdminForm = 
+    location.pathname === '/admin/add' || 
+    location.pathname.startsWith('/admin/edit');
+  const isAdminPage = location.pathname.startsWith('/admin');
+
+  const handleAdminLogout = () => {
+    localStorage.removeItem('adminToken');
+    navigate('/admin/login');
+  };
+
+  const handleAddRedirect = () => {
+    navigate('/admin/add')
+  }
+
   return (
     <header className="header">
-      <div className="header-container">
-        <div className="logo">Le Zie - Vêtements vintage</div>
-
-        <nav className="nav">
-          <ul className="nav-list">
-            <li><a href="#">Events</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." className="search-input" />
-          <button className="search-button">lense</button>
+      <img src={Logo} alt="logo_lezie" onClick={() => navigate("/")} />
+  
+      {!isAdminPage && (
+        <div className='header-input'>
+          <input
+            type="text"
+            placeholder='Search a product...'
+            value={searchQuery}
+            onChange={handleChange}
+          />
+          <button><FaSearch /></button>
         </div>
-
-        <nav className="nav">
-          <ul className="nav-list">
-            <li><a href="#">Login / Register</a></li>
-            <li><a href="#">Cart</a></li>
-          </ul>
-        </nav>
-      </div>
+      )}
+  
+      {isAdminCollection && (
+        <>
+          <p onClick={() => navigate('/admin/add')}>ADD NEW</p>
+          <p onClick={handleAdminLogout}>LOGOUT</p>
+        </>
+      )}
+  
+      {isAdminForm && (
+        <>
+          <p onClick={() => navigate('/admin/collection')}>COLLECTION</p>
+          <p onClick={handleAdminLogout}>LOGOUT</p>
+        </>
+      )}
+  
+      {!isAdminPage && (
+        <p onClick={scrollToFooter}>CONTACT US</p>
+      )}
     </header>
   );
-};
+}
 
 export default Header;

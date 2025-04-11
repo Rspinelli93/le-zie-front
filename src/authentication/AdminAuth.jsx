@@ -22,7 +22,7 @@ export const authenticateAdmin = async (email, password) => {
 export const requireAdminAuth = () => {
     const token = localStorage.getItem('adminToken');
     if (!token) {
-    return redirect('/login-admin');
+    return redirect('/admin/login');
     }
     return null;
 };

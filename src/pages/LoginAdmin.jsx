@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { authenticateAdmin } from '../authentication/AdminAuth'; // Import the function
+import { authenticateAdmin } from '../authentication/AdminAuth';
 
 const LoginAdmin = () => {
     const navigate = useNavigate();
@@ -12,7 +12,6 @@ const LoginAdmin = () => {
     const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!email || !password) {
         setError('Both fields are required.');
         return;
@@ -22,11 +21,11 @@ const LoginAdmin = () => {
     setError('');
 
     try {
-      const { message, token } = await authenticateAdmin(email, password); // API call to backend
-      alert(message); // Show success message 
+        const { message, token } = await authenticateAdmin(email, password);
+        alert(message);
 
-      // Store the JWT token in localStorage or sessionStorage for future requests
-      localStorage.setItem('adminToken', token); // Example using localStorage
+
+        localStorage.setItem('adminToken', token);
 
         setLoading(false);
         navigate('/admin/collection');
