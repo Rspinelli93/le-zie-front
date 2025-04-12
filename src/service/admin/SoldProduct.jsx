@@ -6,7 +6,7 @@ const SoldProduct = async (id) => {
         method: "PUT",
         headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('adminToken')}`
+        "Authorization": `Bearer ${JSON.parse(localStorage.getItem('adminToken'))?.token}`
         },
     });
 

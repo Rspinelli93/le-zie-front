@@ -26,7 +26,7 @@ const Header = () => {
 
   const handleAdminLogout = () => {
     localStorage.removeItem('adminToken');
-    navigate('/admin/login');
+    navigate('/');
   };
 
   const handleAddRedirect = () => {
@@ -51,7 +51,16 @@ const Header = () => {
   
       {isAdminCollection && (
         <>
-          <p onClick={() => navigate('/admin/add')}>ADD NEW</p>
+          <div className='header-input'>
+            <input
+              type="text"
+              placeholder='Search a product...'
+              value={searchQuery}
+              onChange={handleChange}
+            />
+            <button><FaSearch /></button>
+          </div>
+          <p onClick={handleAddRedirect}>ADD NEW</p>
           <p onClick={handleAdminLogout}>LOGOUT</p>
         </>
       )}

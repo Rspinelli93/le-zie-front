@@ -3,7 +3,7 @@ import { requireAdminAuth } from '../authentication/AdminAuth';
 import App from '../App';
 
 import Home from '../pages/Home';
-import AddProduct from '../pages/AddProduct';
+import AddProduct from '../pages/AddProductPage';
 import AdminProductDetails from '../pages/AdminProductDetails';
 import Collection from '../pages/Collection';
 import LoginAdmin from '../pages/LoginAdmin';

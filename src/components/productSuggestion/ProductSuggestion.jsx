@@ -1,13 +1,13 @@
 import "./productSuggestion.css"
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useProductRedirect } from '../../hooks/useProductRedirect.jsx'
 
 import GetProducts from "../../service/user/GetProducts.jsx";
 
 const ProductSuggestion = ({title, filterProp}) => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
+    const redirectToProduct = useProductRedirect();
 
     useEffect(() => {
         GetProducts()
@@ -30,7 +30,7 @@ const ProductSuggestion = ({title, filterProp}) => {
                 {products.map(product => (
                     <div
                         key={product._id}
-                        onClick={() => navigate(`/product/${product._id}`)}
+                        onClick={() => redirectToProduct(product._id)}
                         className="product-box">
                         <img src={product.images[0]} alt={product.name}/>
                         <h6>{product.name}</h6>

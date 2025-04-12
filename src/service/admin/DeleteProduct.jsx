@@ -6,7 +6,7 @@ const deleteProduct = async (id) => {
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('adminToken')}`
+        "Authorization": `Bearer ${JSON.parse(localStorage.getItem('adminToken'))?.token}`
         },
     });
 

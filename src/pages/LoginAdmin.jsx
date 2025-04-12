@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { authenticateAdmin } from '../authentication/AdminAuth';
+import { authenticateAdmin } from '../authentication/adminAuth'
 
 const LoginAdmin = () => {
     const navigate = useNavigate();
@@ -25,7 +25,8 @@ const LoginAdmin = () => {
         alert(message);
 
 
-        localStorage.setItem('adminToken', token);
+        const expiry = Date.now() + 30 * 60 * 1000;
+        localStorage.setItem('adminToken', JSON.stringify({ token, expiry }));
 
         setLoading(false);
         navigate('/admin/collection');

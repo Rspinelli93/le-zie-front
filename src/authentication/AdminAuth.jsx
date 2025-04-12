@@ -19,8 +19,27 @@ export const authenticateAdmin = async (email, password) => {
     return data;
 };
 
+export const getValidAdminToken = () => {
+    const stored = localStorage.getItem('adminToken');
+    if (!stored) return null;
+
+    try {
+
+        const { token, expiry } = JSON.parse(stored);
+        if (Date.now() > expiry) {
+        localStorage.removeItem('adminToken');
+        
+        return null;
+        }
+        return token;
+    } catch {
+        localStorage.removeItem('adminToken');
+        return null;
+    }
+    };
+
 export const requireAdminAuth = () => {
-    const token = localStorage.getItem('adminToken');
+    const token = getValidAdminToken();
     if (!token) {
     return redirect('/admin/login');
     }

@@ -6,7 +6,7 @@ const AddProduct = async (productData) => {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('adminToken')}`
+        "Authorization": `Bearer ${JSON.parse(localStorage.getItem('adminToken'))?.token}`
         },
         body: JSON.stringify(productData),
     });

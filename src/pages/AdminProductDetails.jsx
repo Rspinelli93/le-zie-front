@@ -1,48 +1,133 @@
+import "../index.css";
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import GetById from "../service/user/GetById.jsx";
+import { useEffect, useState } from 'react';
+
+import Header from '../components/header/Header.jsx';
+import Details from '../components/details/Details.jsx';
+import Footer from '../components/footer/Footer.jsx';
+import ProductForm from '../components/productForm/ProductForm';
+
 import SoldProduct from '../service/admin/SoldProduct.jsx';
-import EditProduct from '../service/admin/EditProduct.jsx'
+import EditProduct from '../service/admin/EditProduct.jsx';
+import DeleteProduct from '../service/admin/DeleteProduct.jsx'
+import GetById from '../service/user/GetById.jsx';
 
 const AdminProductDetails = () => {
-    const { id } = useParams(); // Extract product ID from the URL
-    const [product, setProduct] = useState(null); // State to store product data
-    const [error, setError] = useState(null); // State to store any error
-    const [loading, setLoading] = useState(true); // Loading state
+    const { id } = useParams();
+    const [productData, setProductData] = useState(null);
+    const [existingImages, setExistingImages] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch the product by ID when the component mounts
-        GetById(id)
-            .then((data) => {
-                setProduct(data); // Set the product data
-                setLoading(false); // Set loading to false when data is fetched
-            })
-            .catch((err) => {
-                setError(err.message); // Handle error
-                setLoading(false); // Set loading to false even on error
-            });
-    }, [id]); // Only re-run the effect when the 'id' changes
+        const fetchProduct = async () => {
+            try {
+                const product = await GetById(id);
+                setProductData(product);
+                setExistingImages(product.images || []);
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Failed to fetch product:", error);
+            }
+        };
+        fetchProduct();
+    }, [id]);
 
-    if (loading) {
-        return <p>Loading...</p>;
+    const handleProductSubmit = async (updatedData) => {
+        try {
+            const finalProductData = {
+                ...updatedData,
+                images: [...existingImages, ...(updatedData.images || [])],
+            };
+
+            await EditProduct(id, finalProductData);
+            alert('Product updated!');
+        } catch (err) {
+            console.error("Failed to update product:", err);
+        }
+    };
+
+    const handleMarkAsSold = async () => {
+        try {
+            await SoldProduct(id);
+            alert("Product marked as sold!");
+        } catch (error) {
+            console.error("Error marking product as sold:", error);
+        }
+    };
+
+    const handleDeleteProduct = async () => {
+        try {
+            const confirmDelete = window.confirm(
+                "Are you sure you want to delete the product? This action is irreversible."
+            );
+            if(confirmDelete) {
+                await DeleteProduct(id);
+                alert("Product Deleted!");
+            }
+        } catch (error) {
+            console.error("Error eliminating product:", error);
+        }
     }
 
-    if (error) {
-        return <p>Error: {error}</p>;
-    }
+    const handleRemoveExistingImage = (indexToRemove) => {
+        const confirmDelete = window.confirm(
+            "Are you sure you want to remove this image? This action is irreversible."
+        );
+        if (confirmDelete) {
+            setExistingImages((prev) =>
+                prev.filter((_, index) => index !== indexToRemove)
+            );
+        }
+    };
+
+    if (isLoading) return <p>Loading product...</p>;
 
     return (
-        <div>
-            <h1>Edit Product</h1>
-            {product && (
+        <>
+            <Header />
+            <Details id={id} />
+
+
+            <div>
+                <h2>EDIT FORM</h2>
+                {existingImages.length > 0 && (
+                    <div>
+                        <h3>Existing Images</h3>
+                        <ul>
+                            {existingImages.map((url, index) => (
+                                <li key={index}>
+                                    <img src={url} alt={`product-${index}`}/>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveExistingImage(index)}
+                                    >
+                                        ×
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                <ProductForm
+                    initialData={{ ...productData, images: [] }}
+                    onSubmit={handleProductSubmit}
+                />
+
                 <div>
-                    <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-                    {/* Add other product fields you want to edit */}
-                    {/* You can add form inputs here to edit the product */}
+                    <button onClick={handleMarkAsSold}>
+                        Mark as Sold
+                    </button>
                 </div>
-            )}
-        </div>
+
+                <div>
+                    <button onClick={handleDeleteProduct}>
+                        Delete Product
+                    </button>
+                </div>
+            </div>
+            <Footer />
+        </>
     );
 };
 

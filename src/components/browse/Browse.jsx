@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { renderPageNumbers } from "../../utils/pagination.jsx";
+import { useProductRedirect } from '../../hooks/useProductRedirect.jsx'
 
 const Browse = ({ 
     paginatedProducts, 
@@ -9,7 +9,7 @@ const Browse = ({
     currentPage, 
     handlePageChange 
 }) => {
-    const navigate = useNavigate();
+    const redirectToProduct = useProductRedirect();
 
     return (
     <div className="collection-clothes">
@@ -27,7 +27,7 @@ const Browse = ({
         {paginatedProducts.map(product => (
             <div
             key={product._id}
-            onClick={() => navigate(`/product/${product._id}`)}
+            onClick={() => redirectToProduct(product._id)}
             className="product-box"
             >
             <img src={product.images[0]} alt={product.name} />

@@ -1,4 +1,3 @@
-// editProduct.js
 const apiUrl = 'http://localhost:3210';
 
 const editProduct = async (id, updatedData) => {
@@ -7,7 +6,7 @@ const editProduct = async (id, updatedData) => {
         method: "PUT",
         headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('adminToken')}`
+        "Authorization": `Bearer ${JSON.parse(localStorage.getItem('adminToken'))?.token}`
         },
         body: JSON.stringify(updatedData),
     });
