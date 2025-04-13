@@ -1,3 +1,5 @@
+import "../../index.css"
+import './browse.css'
 import { renderPageNumbers } from "../../utils/pagination.jsx";
 import { useProductRedirect } from '../../hooks/useProductRedirect.jsx'
 

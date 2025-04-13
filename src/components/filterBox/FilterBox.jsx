@@ -1,3 +1,5 @@
+import "../../index.css"
+import './filterBox.css'
 import { useState } from "react";
 
 const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {

@@ -1,3 +1,4 @@
+import "../../index.css"
 import "./details.css"
 import { useState, useEffect } from 'react';
 import GetById from "../../service/user/GetById.jsx";

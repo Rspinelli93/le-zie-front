@@ -1,3 +1,4 @@
+import "../index.css"
 import { useEffect, useState, useMemo } from "react";
 import { useSearch } from "../contexts/SearchContext";
 

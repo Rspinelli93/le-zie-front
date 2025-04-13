@@ -1,3 +1,4 @@
+import "../index.css"
 import Header from '../components/header/Header';
 import ProductForm from '../components/productForm/ProductForm';
 import AddProduct from '../service/admin/AddProduct';

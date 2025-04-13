@@ -1,3 +1,5 @@
+import "../../index.css"
+import "./productForm.css"
 import { useState, useRef } from 'react';
 import { imageUploadFunction } from '../../utils/cloudinaryUpload';
 

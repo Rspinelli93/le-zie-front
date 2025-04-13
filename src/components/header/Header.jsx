@@ -1,3 +1,4 @@
+import "../../index.css"
 import "./Header.css";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate, useLocation  } from 'react-router-dom';

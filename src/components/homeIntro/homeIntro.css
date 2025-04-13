@@ -1,0 +1,200 @@
+/** -------- TOP ---------- */
+.home-intro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #5e1675;
+    color: #ffd23f;
+    padding: 50px
+}
+.home-intro [alt="logo_lezie"] {
+    width: 500px;
+    margin: 50px;
+}
+.home-intro h1{
+    font-size: 5.5rem;
+    width: 40%;
+    margin: 15px;
+}
+.home-intro > h1:nth-of-type(1) {
+    margin-right: 500px
+}
+.home-intro > h1:nth-of-type(2) {
+    margin-left: 500px
+}
+.intro-nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 80px;
+    gap: 200px;
+}
+.intro-nav p {
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #ffd23f;
+    background-color: #5e1675;
+}
+.intro-nav > p:nth-of-type(2) {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: #ffd23f 7px solid;
+    border-radius: 80px;
+    padding: 10px 20px;
+    transition: 0.6s ease all;
+}
+.intro-nav > p:nth-of-type(2):hover {
+    color: #f5fa92;
+    border-color: #f5fa92;
+    scale: 1.1;
+}
+
+@media (max-width: 1024px) {
+.home-intro h1 {
+    font-size: 4rem;
+    width: 60%;
+    margin: 10px auto;
+}
+
+.home-intro > h1:nth-of-type(1),
+.home-intro > h1:nth-of-type(2) {
+    margin: 10px;
+}
+
+.intro-nav {
+    flex-direction: column;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.intro-nav p {
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.home-intro [alt="logo_lezie"] {
+    width: 300px;
+    margin: 30px;
+}
+}
+
+@media (max-width: 600px) {
+.home-intro h1 {
+    font-size: 2.5rem;
+    width: 90%;
+}
+.intro-nav > p:nth-of-type(1){
+    display: none;
+}
+
+.intro-nav > p:nth-of-type(2) {
+    padding: 8px 16px;
+    font-size: 1.2rem;
+    border-width: 4px;
+}
+
+.home-intro {
+    padding: 35px;
+}
+}
+
+/** -------- BOTTOM ---------- */
+.home-motto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background-color: #ee4266;
+    color: #5e1675;
+}
+
+.home-motto h2{
+    font-size: 5rem;
+    width: 35%;
+    margin: 50px;
+    margin-left: 20%;
+}
+
+.home-motto ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 80px;
+    gap: 200px;
+}
+.home-motto ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    color: #5e1675;
+    width: 300px;
+    margin: 15px;
+    transition: 0.6s ease all;
+}
+
+.home-motto ul li:hover {
+    scale: 1.2;
+}
+
+.home-motto ul li p {
+    font-size: 2rem;
+    width: fit-content;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1;
+
+}
+.home-motto ul li:nth-of-type(3) img {
+    scale: 1.1;
+}
+
+@media (max-width: 1024px) {
+.home-motto h2 {
+    font-size: 3.5rem;
+    width: 80%;
+    margin: 40px;
+    text-align: center;
+}
+
+.home-motto ul {
+    flex-direction: column;
+    gap: 60px;
+    margin: 40px 0;
+}
+
+.home-motto ul li {
+    width: 80%;
+}
+}
+
+@media (max-width: 600px) {
+.home-motto h2 {
+    font-size: 2.5rem;
+    width: 300px;
+}
+
+.home-motto ul li p {
+    font-size: 1.5rem;
+    width: 300px;
+}
+
+.home-motto ul li {
+    gap: 30px;
+}
+
+.home-motto {
+    padding: 30px;
+}
+.home-motto ul li:hover {
+    scale: 1;
+}
+}

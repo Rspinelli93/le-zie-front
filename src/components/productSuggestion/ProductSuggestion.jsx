@@ -1,3 +1,4 @@
+import "../../index.css"
 import "./productSuggestion.css"
 import { useEffect, useState } from "react";
 import { useProductRedirect } from '../../hooks/useProductRedirect.jsx'
