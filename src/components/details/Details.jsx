@@ -51,7 +51,7 @@ const Details = ({id}) => {
                     <div className='details-top'>
                         <div className="product-images-container">
                         <div
-                            className="main-image"
+                            className={`main-image ${product.sold ? "sold" : ""}`}
                             ref={containerRef}
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}

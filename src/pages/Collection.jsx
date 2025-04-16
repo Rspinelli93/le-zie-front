@@ -30,6 +30,7 @@ const Collection = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({ ...FILTER_TEMPLATE });
     const { searchQuery } = useSearch();
+    const [showFilters, setShowFilters] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -92,7 +93,7 @@ const Collection = () => {
     }, [products, filters, searchQuery]);
 
     useEffect(() => {
-        if (filteredProducts.length === 0) {
+        if (filteredProducts.length === 0 && isLoading === false) {
             setNotFound(true);
         } else {
             setNotFound(false);
@@ -113,7 +114,7 @@ const Collection = () => {
 
     return (
         <>
-            <Header />
+            <Header onToggleFilters={() => setShowFilters(prev => !prev)} />
             <div className="collection-top">
                 <h2>BROWSE THE COLLECTION</h2>
             </div>
@@ -123,6 +124,7 @@ const Collection = () => {
                 products={products}
                 setFilters={handleSetFilters}
                 clearAllFilters={clearAllFilters}
+                showFilters={showFilters}
             />
 
             <Browse 

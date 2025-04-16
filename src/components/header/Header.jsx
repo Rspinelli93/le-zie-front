@@ -14,7 +14,7 @@ import { useSearch } from "../../contexts/SearchContext";
 import useIsMobile from "../../hooks/useIsMobile";
 import Logo from "../../assets/icons/logo_lezie.png"
 
-const Header = () => {
+const Header = ({ onToggleFilters }) => {
   const navigate = useNavigate();
   const location = useLocation(); 
   const { scrollToFooter } = useScroll();
@@ -44,8 +44,11 @@ const Header = () => {
 
   return (
     <header className="header">
-      {isMobile && (
-        <FaBars className="header-icon" />
+      {(isMobile && !isAdminPage) && (
+        <FaBars 
+        className="header-icon" 
+        onClick={onToggleFilters}
+        />
       )}
       <img 
       src={Logo} 

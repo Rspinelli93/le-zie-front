@@ -3,6 +3,7 @@ import "./loginForm.css"
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { authenticateAdmin } from '../../authentication/adminAuth'
+import { div } from "framer-motion/client";
 
 const LoginAdmin = () => {
     const navigate = useNavigate();
@@ -39,38 +40,41 @@ const LoginAdmin = () => {
     };
 
     return (
-    <div className="login-admin-container">
-        <h2>Admin Login</h2>
-        <form onSubmit={handleSubmit}>
-        <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            />
+    <div className="login-admin">
+        <div className="login-admin-container">
+            <h2>Admin Login</h2>
+            <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                />
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="password">Password:</label>
+                <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                />
+            </div>
+
+            {error && <div className="error-message">{error}</div>}
+
+            <button type="submit" disabled={loading}>
+                {loading ? 'Logging in...' : 'Login'}
+            </button>
+            </form>
         </div>
-
-        <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            />
-        </div>
-
-        {error && <div className="error-message">{error}</div>}
-
-        <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-        </button>
-        </form>
     </div>
+
     );
 };
 

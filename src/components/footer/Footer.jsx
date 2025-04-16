@@ -29,17 +29,14 @@ const Footer = () => {
     
     return (
         <>
-        {isAdmin && (
-            <footer className="footer-admin"><img src={Logo} alt="logo_lezie" onClick={() => navigate("/")} /></footer>
-        )}
         {!isAdmin && (
             <footer className="footer" ref={footerRef}>
                 <div className='footer-title'>
-                    <h2>Questions? Compliments?</h2>
-                    <h2>Send 'Em Here!</h2>
+                    <h2>We’re Always on the Move</h2>
+                    <h2>Stay in the Loop!</h2>
                 </div>
                 <div className='footer-newsletter'>
-                    <h2>GET THE LATEST NEWS</h2>
+                    <h2>Wanna Know Where We’ll Be Next? </h2>
                     <motion.div
                         variants={popIn}
                         initial="hidden"
@@ -89,9 +86,24 @@ const Footer = () => {
                         viewport={{ once: false }}
                         >
                         <h6>SOCIAL</h6>
-                        <div className="social-icons">
-                        <FaInstagram href="https://www.instagram.com/le_zie_vetements_vintage/" target="_blank"/>
-                        </div>
+                        <a 
+                        className="social-icons"
+                        href="https://www.instagram.com/le_zie_vetements_vintage/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        >
+                        <FaInstagram />
+                        </a>
+                    </motion.li>
+                    <motion.li
+                        variants={fadeInUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: false }}
+                        >
+                        <h6>ADRESS</h6>
+                        <p>21 routes des Jeunes | Carouge 1227 | Switzerland</p>
+                        <p></p>
                     </motion.li>
                 </motion.ul>
             </footer>

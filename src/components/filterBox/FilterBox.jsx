@@ -2,7 +2,7 @@ import "../../index.css";
 import './filterBox.css';
 import { useState } from "react";
 
-const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {
+const FilterBox = ({ filters, products, setFilters, clearAllFilters, showFilters }) => {
     const [openDropdown, setOpenDropdown] = useState(null);
 
     const getUniqueValues = (arr, key) => {
@@ -44,7 +44,7 @@ const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {
     const filterTypes = ["decade", "categories", "season", "colors", "brand"];
 
     return (
-        <div className="filters-container">
+        <div className={`filters-container ${showFilters ? "show" : ""}`}>
 
             <div className="filter-dropdown">
                 <details 

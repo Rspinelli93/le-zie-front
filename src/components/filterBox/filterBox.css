@@ -4,15 +4,17 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
     padding: 0 80px;
+    height: 100%;
     background-color: var(--color-primary);
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 .filter-dropdown {
     flex: 1 1 160px;
     position: relative;
     margin-bottom: 10px;
+    transition: all 0.2s ease-in-out;
 }
 
 .filter-options {
@@ -22,6 +24,7 @@
     padding: 1rem;
     max-height: 300px;
     overflow-y: auto;
+    transition: all 0.3s ease;
 }
 .filter-options::-webkit-scrollbar {
     width: 9px;
@@ -110,13 +113,26 @@ details summary:hover {
 }
 
 /* Mobile view */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .filters-container {
-        flex-direction: column;
+        display: none;
     }
 
-    .filter-dropdown {
-        width: 100%;
+    .filters-container.show {
+        display: block;
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: var(--color-secondary);
+        z-index: 999;
+        padding: 1.5rem;
+        overflow-y: auto;
+        box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        padding-top: 85px;
     }
 }
 

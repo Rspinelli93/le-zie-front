@@ -65,129 +65,145 @@ const ProductForm = ({ initialData, onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Product Name:</label>
-                <input type="text" name="name" value={product.name} onChange={handleChange} required />
-            </div>
+        <div className="product-form">
+            <h2>Product Information</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Product Name:</label>
+                    <input type="text" name="name" value={product.name} onChange={handleChange} required />
+                </div>
 
-            <div>
-                <label>Description:</label>
-                <textarea name="description" value={product.description} onChange={handleChange} required />
-            </div>
-            <div>
-            <label>Categories:</label>
-            <input
-                type="text"
-                value={categoryInput}
-                onChange={(e) => setCategoryInput(e.target.value)}
-            />
-            <button type="button" onClick={handleAddCategory}>Add</button>
-            <ul>
-                {product.categories.map((cat, i) => (
-                    <li key={i}>
-                        {cat}
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setProduct(prev => ({
-                                    ...prev,
-                                    categories: prev.categories.filter((_, idx) => idx !== i)
-                                }))
-                            }
-                            style={{ marginLeft: '10px' }}
+                <div>
+                    <label>Description:</label>
+                    <textarea name="description" value={product.description} onChange={handleChange} required />
+                </div>
+
+                <div>
+                    <label>Categories:</label>
+                    <div className="category-color-container">
+                        <input
+                            type="text"
+                            value={categoryInput}
+                            onChange={(e) => setCategoryInput(e.target.value)}
+                        />
+                        <button type="button" onClick={handleAddCategory}>Add</button>
+                    </div>
+                    <ul>
+                        {product.categories.map((cat, i) => (
+                            <li 
+                            key={i}
+                            className="added-value"
+                            >
+                                {cat}
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setProduct(prev => ({
+                                            ...prev,
+                                            categories: prev.categories.filter((_, idx) => idx !== i)
+                                        }))
+                                    }
+                                >
+                                    ×
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div>
+                    <label>Colors:</label>
+                    <div className="category-color-container">
+                        <select
+                            value={colorInput}
+                            onChange={(e) => setColorInput(e.target.value)}
                         >
-                            ×
-                        </button>
-                    </li>
-                ))}
-            </ul>
+                            <option value="">Select a color</option>
+                            {["Red", "Blue", "Green", "Yellow", "Black", "White", "Purple", "Orange", "Pink", "Gray"].map(color =>
+                                <option key={color} value={color}>{color}</option>
+                            )}
+                        </select>
+                        <button type="button" onClick={handleAddColor}>Add</button>
+                    </div>
+                    <ul>
+                        {product.colors.map((color, i) => (
+                            <li 
+                            key={i}
+                            className="added-value"
+                            >
+                                {color}
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setProduct(prev => ({
+                                            ...prev,
+                                            colors: prev.colors.filter((_, idx) => idx !== i)
+                                        }))
+                                    }
+                                >
+                                    ×
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div>
+                    <label>Images:</label>
+                    <input type="file" multiple onChange={handleImageSelection} ref={fileInputRef} />
+                    <ul className="image-preview">
+                        {imageFiles.map((file, index) => (
+                            <li
+                            key={index}
+                            className="added-value"
+                            >
+                                {file.name}
+                                <button type="button" onClick={() => handleRemoveImage(index)}>×</button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div>
+                    <label>Decade:</label>
+                    <select name="decade" value={product.decade} onChange={handleChange}>
+                        <option value="">Select a decade</option>
+                        {["60", "70", "80", "90", "0", "10", "20"].map(d => <option key={d} value={d}>{d}</option>)}
+                    </select>
+                </div>
+
+                <div>
+                    <label>Brand:</label>
+                    <input type="text" name="brand" value={product.brand} onChange={handleChange} required />
+                </div>
+
+                <div>
+                    <label>Price:</label>
+                    <input type="number" name="price" value={product.price} onChange={handleChange} required />
+                </div>
+
+                <div>
+                    <label>Size:</label>
+                    <select name="size" value={product.size} onChange={handleChange}>
+                        <option value="">Select a size</option>
+                        {["XXS", "XS", "S", "M", "L", "XL", "XXL", ...Array(39).fill().map((_, i) => 32 + i)].map(size =>
+                            <option key={size} value={size}>{size}</option>
+                        )}
+                    </select>
+                </div>
+
+                <div>
+                    <label>Season:</label>
+                    <select name="season" value={product.season} onChange={handleChange}>
+                        <option value="">Select a season</option>
+                        <option value="winter/fall">Winter/Fall</option>
+                        <option value="summer/spring">Summer/Spring</option>
+                    </select>
+                </div>
+
+                <button type="submit">Submit Product</button>
+            </form>
         </div>
-
-        <div>
-            <label>Colors:</label>
-            <select
-                value={colorInput}
-                onChange={(e) => setColorInput(e.target.value)}
-            >
-                <option value="">Select a color</option>
-                {["Red", "Blue", "Green", "Yellow", "Black", "White", "Purple", "Orange", "Pink", "Gray"].map(color =>
-                    <option key={color} value={color}>{color}</option>
-                )}
-            </select>
-            <button type="button" onClick={handleAddColor}>Add</button>
-            <ul>
-                {product.colors.map((color, i) => (
-                    <li key={i}>
-                        {color}
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setProduct(prev => ({
-                                    ...prev,
-                                    colors: prev.colors.filter((_, idx) => idx !== i)
-                                }))
-                            }
-                            style={{ marginLeft: '10px' }}
-                        >
-                            ×
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-
-            <div>
-                <label>Images:</label>
-                <input type="file" multiple onChange={handleImageSelection} ref={fileInputRef} />
-                <ul>
-                    {imageFiles.map((file, index) => (
-                        <li key={index}>{file.name}
-                            <button type="button" onClick={() => handleRemoveImage(index)}>X</button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div>
-                <label>Decade:</label>
-                <select name="decade" value={product.decade} onChange={handleChange}>
-                    <option value="">Select a decade</option>
-                    {["60", "70", "80", "90", "0", "10", "20"].map(d => <option key={d} value={d}>{d}</option>)}
-                </select>
-            </div>
-
-            <div>
-                <label>Brand:</label>
-                <input type="text" name="brand" value={product.brand} onChange={handleChange} required />
-            </div>
-
-            <div>
-                <label>Price:</label>
-                <input type="number" name="price" value={product.price} onChange={handleChange} required />
-            </div>
-
-            <div>
-                <label>Size:</label>
-                <select name="size" value={product.size} onChange={handleChange}>
-                    <option value="">Select a size</option>
-                    {["XXS", "XS", "S", "M", "L", "XL", "XXL", ...Array(39).fill().map((_, i) => 32 + i)].map(size =>
-                        <option key={size} value={size}>{size}</option>
-                    )}
-                </select>
-            </div>
-
-            <div>
-                <label>Season:</label>
-                <select name="season" value={product.season} onChange={handleChange}>
-                    <option value="">Select a season</option>
-                    <option value="winter/fall">Winter/Fall</option>
-                    <option value="summer/spring">Summer/Spring</option>
-                </select>
-            </div>
-
-            <button type="submit">Submit</button>
-        </form>
     );
 };
 

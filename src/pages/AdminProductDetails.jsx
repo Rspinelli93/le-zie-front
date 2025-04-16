@@ -1,4 +1,5 @@
 import "../index.css";
+import "../components/adminProductDetails/adminProductDetails.css";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -17,6 +18,8 @@ const AdminProductDetails = () => {
     const [productData, setProductData] = useState(null);
     const [existingImages, setExistingImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isSold, setIsSold] = useState(false)
+    const [buttonLabel, setButtonLabel] = useState("Mark as Sold");
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -32,13 +35,20 @@ const AdminProductDetails = () => {
         fetchProduct();
     }, [id]);
 
+    useEffect(() => {
+        GetById(id)
+            .then((data) => {
+                const updatedProduct = data.sold ? "Mark as Unsold" : "Mark as Sold"
+                setButtonLabel(updatedProduct)
+            })
+    }, [isSold]);    
+
     const handleProductSubmit = async (updatedData) => {
         try {
             const finalProductData = {
                 ...updatedData,
                 images: [...existingImages, ...(updatedData.images || [])],
             };
-
             await EditProduct(id, finalProductData);
             alert('Product updated!');
         } catch (err) {
@@ -48,8 +58,13 @@ const AdminProductDetails = () => {
 
     const handleMarkAsSold = async () => {
         try {
-            await SoldProduct(id);
-            alert("Product marked as sold!");
+            const updatedProduct = await SoldProduct(id);
+            setIsSold(updatedProduct.sold);
+            if (updatedProduct.sold) {
+                alert("Product marked as sold! 👏");
+            } else {
+                alert("Product un-sold! 😭");
+            }
         } catch (error) {
             console.error("Error marking product as sold:", error);
         }
@@ -80,50 +95,47 @@ const AdminProductDetails = () => {
         }
     };
 
-    if (isLoading) return <p>Loading product...</p>;
+    if (isLoading) return <p className="loading-message">Loading product...</p>;
 
     return (
         <>
             <Header />
             <Details id={id} />
+            <div className="product-details-container">
+                <div className="admin-product-details">
+                    <h2>Edit Product</h2>
+                    {existingImages.length > 0 && (
+                        <div className="existing-images-container">
+                            <h3>Existing Images</h3>
+                            <ul className="existing-images-list">
+                                {existingImages.map((url, index) => (
+                                    <li key={index}>
+                                        <img src={url} alt={`product-${index}`}/>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRemoveExistingImage(index)}
+                                        >
+                                            ×
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
 
+                    <ProductForm
+                        initialData={{ ...productData, images: [] }}
+                        onSubmit={handleProductSubmit}
+                    />
 
-            <div>
-                <h2>EDIT FORM</h2>
-                {existingImages.length > 0 && (
-                    <div>
-                        <h3>Existing Images</h3>
-                        <ul>
-                            {existingImages.map((url, index) => (
-                                <li key={index}>
-                                    <img src={url} alt={`product-${index}`}/>
-                                    <button
-                                        type="button"
-                                        onClick={() => handleRemoveExistingImage(index)}
-                                    >
-                                        ×
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="admin-actions">
+                        <button className="sold-button" onClick={handleMarkAsSold}>
+                            {buttonLabel}
+                        </button> : 
+                        <button className="delete-button" onClick={handleDeleteProduct}>
+                            Delete Product
+                        </button>
                     </div>
-                )}
-
-                <ProductForm
-                    initialData={{ ...productData, images: [] }}
-                    onSubmit={handleProductSubmit}
-                />
-
-                <div>
-                    <button onClick={handleMarkAsSold}>
-                        Mark as Sold
-                    </button>
-                </div>
-
-                <div>
-                    <button onClick={handleDeleteProduct}>
-                        Delete Product
-                    </button>
                 </div>
             </div>
             <Footer />

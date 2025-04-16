@@ -32,7 +32,8 @@
     justify-content: center;
     gap: 20px;
     width: 250px;
-    height: 350px;
+    min-height: 350px;
+    height: auto;
     background-color: var(--color-quaternary);
     border-radius: 20px;
     padding: 20px;
@@ -56,7 +57,9 @@
     top: -6px; 
     box-shadow: 0 10px 0 1px black;
 }
-
+.product-box{
+    max-height: fit-content;
+}
 
 .product-container div:hover h6{
     font-weight: 1500;

@@ -10,7 +10,7 @@ import FilterBox from "../components/filterBox/FilterBox.jsx";
 import Browse from "../components/browse/Browse.jsx";
 import { getTotalPages, getPaginatedProducts } from "../utils/pagination.jsx";
 
-const PRODUCTS_PER_PAGE = 2;
+const PRODUCTS_PER_PAGE = 9;
 
 const FILTER_TEMPLATE = {
     categories: [],
@@ -26,16 +26,24 @@ const AdminCollection = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [notFound, setNotFound] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({ ...FILTER_TEMPLATE });
     const { searchQuery } = useSearch();
 
     useEffect(() => {
+        setIsLoading(true);
         GetProducts()
-            .then((data) => setProducts(data))
-            .catch((err) => setError(err.message));
+            .then((data) => {
+                setProducts(data);
+                setIsLoading(false); 
+            })
+            .catch((err) => {
+                setError(err.message);
+                setIsLoading(false);
+            });
     }, []);
-
+    
     const clearAllFilters = () => {
         setFilters({ ...FILTER_TEMPLATE });
         setCurrentPage(1);
@@ -121,6 +129,7 @@ const AdminCollection = () => {
                 paginatedProducts={paginatedProducts}
                 notFound={notFound}
                 error={error}
+                isLoading={isLoading}
                 totalPages={totalPages}
                 currentPage={currentPage}
                 handlePageChange={handlePageChange}

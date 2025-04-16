@@ -2,6 +2,8 @@ import "../../index.css"
 import './browse.css'
 import { renderPageNumbers } from "../../utils/pagination.jsx";
 import { useProductRedirect } from '../../hooks/useProductRedirect.jsx'
+import { motion } from "framer-motion";
+import { fadeInUp } from "../../utils/motionEffects.js";
 
 const Browse = ({ 
     paginatedProducts, 
@@ -30,19 +32,27 @@ const Browse = ({
             <p>SORRY - NOT FOUND 🚫</p>
         </div>
         )}
-        <div className="product-container">
+        <motion.div
+        key={currentPage}
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="product-container"
+        >
         {paginatedProducts.map(product => (
             <div
             key={product._id}
             onClick={() => redirectToProduct(product._id)}
-            className="product-box"
+            className={`product-box ${product.sold ? "sold" : ""}`}
             >
             <img src={product.images[0]} alt={product.name} />
             <h6>{product.name}</h6>
-            <p>{product.price}.-</p>
+            <p>Price: {product.price}.-</p>
+            <p>Size: {product.size}</p>
             </div>
         ))}
-        </div>
+        </motion.div>
 
         {totalPages > 1 && (
             <div className="pagination-controls">

@@ -2,6 +2,8 @@ import "../../index.css"
 import "./productSuggestion.css"
 import { useEffect, useState } from "react";
 import { useProductRedirect } from '../../hooks/useProductRedirect.jsx'
+import { motion } from "framer-motion";
+import { fadeInUp } from "../../utils/motionEffects.js";
 
 import GetProducts from "../../service/user/GetProducts.jsx";
 
@@ -30,20 +32,28 @@ const ProductSuggestion = ({title, filterProp}) => {
             {error && (
             <div className="error-message">
                 <p>Something went wrong: {error}</p>
-            </div>)}
-            {isLoading ? (
-                <div className="loader"></div>
-            ) : (
+            </div>
+            )}
+            {isLoading && (
+            <div className="loader">
+            </div>
+            )}
+        {products && (
             <div className="product-container">
                 {products.map(product => (
-                    <div
-                        key={product._id}
-                        onClick={() => redirectToProduct(product._id)}
-                        className="product-box">
-                        <img src={product.images[0]} alt={product.name}/>
-                        <h6>{product.name}</h6>
-                        <p>Details</p>
-                    </div>
+                    <motion.div
+                            key={product._id}
+                            onClick={() => redirectToProduct(product._id)}
+                            className={`product-box ${product.sold ? "sold" : ""}`}
+                            variants={fadeInUp}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false }}
+                            >
+                            <img src={product.images[0]} alt={product.name}/>
+                            <h6>{product.name}</h6>
+                            <p>Details</p>
+                    </motion.div>
                 ))}
             </div>)}
         </div>

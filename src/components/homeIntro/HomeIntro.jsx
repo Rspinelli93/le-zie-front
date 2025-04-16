@@ -40,8 +40,8 @@ const HomeIntro = () => {
                 whileInView="visible"
                 viewport={{ once: false }}
                 >
-                <p>Shop Sustainable, Shop Stylish –<br/>
-                Pre-Loved Treasures Await</p>
+                <p>Geneva’s Hidden Gems –<br/>
+                Stylish, Sustainable, and Pre-Loved</p>
                 <p onClick={() => navigate("/collection")}>OUR SHOWROOM <FaArrowAltCircleRight /></p>
             </motion.div>
         </div>

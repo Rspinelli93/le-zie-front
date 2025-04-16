@@ -154,6 +154,7 @@ svg {
 
 .footer-list {
     display: grid;
+    gap: 100px;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
@@ -201,7 +202,7 @@ svg {
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
+    gap: 35px;
 
 }
 

@@ -25,8 +25,10 @@ const AddProductPage = () => {
     return (
         <div>
             <Header />
-            <h1>Add Product</h1>
-            <ProductForm initialData={productTemplate} onSubmit={handleProductSubmit} />
+            <div className="add-product-page">
+                <h1>Add Product</h1>
+                <ProductForm initialData={productTemplate} onSubmit={handleProductSubmit} />
+            </div>
         </div>
     );
 };

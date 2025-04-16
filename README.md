@@ -4,40 +4,54 @@ This is the **frontend** of a vintage clothing web application. It allows **user
 
 ---
 
+## 🧰 Tech Stack
+
+- **React** – JavaScript library for building user interfaces  
+- **React DOM** – Entry point for rendering React components to the DOM  
+- **React Router DOM** – Declarative routing for React web applications  
+- **Framer Motion** – Animation library for React components  
+- **React Icons** – Icon toolkit for including popular icons in your app  
+- **dotenv** – Manages environment variables securely in development
+
+### 🔗 External Services & APIs
+
+- **Cloudinary** – Image hosting and media storage solution (used for uploading and delivering product images)  
+- **MailerLite** – Email marketing platform used for newsletter subscriptions
+
+---
+
 ## 🧑‍💻 User Routes
 
 These are public-facing routes that regular users can access to browse and view clothing items.
 
-- `/home`  
+- `/`  
   General **landing page** with branding, featured items, or introductory content.
 
-- `/showroom`  
+- `/collection`  
   Displays a list or grid of **all available clothing items** from the database.
 
-- `/showroom/:id`  
+- `/collection/:id`  
   Dynamic route that shows **details of a selected product**
 
 ---
 
 ## 🔐 Admin Routes
 
-These routes are restricted to authenticated admin users.
+These routes are restricted to authenticated admin users. If try to access a route without auth, it will redirect to `admin/login`
 
 - `/admin/login`  
   Login page for admin access.
 
-- `/admin/showroom`  
+- `/admin/collection`  
   Admin's view of the clothing inventory:
-  - See all products
-  - Edit or delete items
-  - Mark items as sold
+  - Browse and Search through all the products
 
-- `/admin/showroom/:id`  
+- `/admin/collection/:id`  
   Detailed view of a single item for the admin:
   - Editable form to update product info
   - "Delete" and "Mark as Sold" options
 
-- `/admin/form`  
+- `/admin/add`  
   Page to **add new clothing items** to the database. The form includes:
   - **Name** (text input)
   - **Categories** (checkboxes — allow multiple)
@@ -53,7 +67,7 @@ These routes are restricted to authenticated admin users.
 
 ## ⚙️ Functionality
 
-- Fully dynamic routing using product IDs (`/showroom/:id`, `/admin/showroom/:id`)
+- Fully dynamic routing using product IDs (`/collection/:id`, `/admin/collection/:id`)
 - Image upload support for multiple files per product
 - Complete CRUD functionality through frontend API calls:
   - Create new product

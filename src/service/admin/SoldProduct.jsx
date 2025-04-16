@@ -2,7 +2,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const SoldProduct = async (id) => {
     try {
-    const response = await fetch(`${apiUrl}/admin/reserve/${id}`, {
+    const response = await fetch(`${apiUrl}/admin/sold/${id}`, {
         method: "PUT",
         headers: {
         "Content-Type": "application/json",
