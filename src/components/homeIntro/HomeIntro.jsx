@@ -3,7 +3,7 @@ import './homeIntro.css'
 import { useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion";
 
-import { slideInRight, slideInLeft, fadeInUp, swipeInBottom, zoomIn } from "../../utils/motionEffects.js";
+import { slideInRight, slideInLeft, fadeInUp, swipeInBottom, zoomIn, staggerContainer } from "../../utils/motionEffects.js";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import Logo from "../../assets/icons/logo_lezie.png"
 import Ecology from "../../assets/icons/ecology.png"
@@ -45,13 +45,19 @@ const HomeIntro = () => {
                 <p onClick={() => navigate("/collection")}>OUR SHOWROOM <FaArrowAltCircleRight /></p>
             </motion.div>
         </div>
-        <div className="home-motto">
+        <motion.div 
+        className="home-motto"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false }}
+        >
             <motion.h2
                 variants={swipeInBottom}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false }}
-            >WE BELIVE IN SECOND CHANCES</motion.h2>
+            >WE BELIEVE IN SECOND CHANCES</motion.h2>
             <ul>
                 <motion.li
                     variants={zoomIn}
@@ -81,7 +87,7 @@ const HomeIntro = () => {
                     <p>Worn before, loved again</p>
                 </motion.li>
             </ul>
-        </div>
+        </motion.div>
         </>
     )
 }

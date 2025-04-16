@@ -1,0 +1,105 @@
+.header {
+    background-color: var(--color-secondary);
+    padding: 35px;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.header-icon {
+    display: none;
+    border-radius: 0px;
+    transition: 0.2s ease all;
+    position: relative;
+    top: 0;
+}
+.header-icon:hover {
+    color: var(--color-tertiary);
+    top: -4px;
+    filter: drop-shadow(2px 2px 0 black);
+}
+.header img[alt="logo_lezie"] {
+    width: 200px;
+    cursor: pointer;
+}
+
+.header-input{
+    padding: 14px;
+    border: 2px solid var(--color-tertiary);
+    border-radius: 15px;
+    font-size: 0.8rem;
+    width: 300px;
+    background-color: var(--color-quaternary);
+    color:black;
+    text-align: center; 
+}
+header p {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: 0.2s ease all;
+    position: relative;
+    top: 0;
+}
+
+header p:hover {
+    color: var(--color-tertiary);
+    top: -4px;
+    text-shadow: 2px 2px 0 black;
+}
+
+header p:active {
+    color: var(--color-tertiary);
+    top: -4px;
+    text-shadow: 2px 2px 0 black;
+}
+
+@media screen and (max-width: 1024px) {
+    .header {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .header-input {
+        width: 250px;
+        font-size: 0.75rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+    .header img[alt="logo_lezie"] {
+        width: 160px;
+    }
+    }
+
+    @media screen and (max-width: 600px) {
+    .header-icon {
+        display: block;
+        padding: 5px;
+    }
+    .header {
+        justify-content: space-around;
+        padding: 15px;
+    }
+
+    .header-icon {
+        color: var(--color-primary);
+        cursor: pointer;
+    }
+
+    .header img[alt="logo_lezie"] {
+        width: 140px;
+    }
+    .header-input {
+        display: none;
+    }
+    header p {
+        font-size: 1rem;
+    }
+}

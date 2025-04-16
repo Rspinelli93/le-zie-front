@@ -1,5 +1,6 @@
 export const imageUploadFunction = async (array) => {
     const imageUrls = [];
+    const urlCloud = import.meta.env.VITE_API_CLOUDINARY;
 
     for (const file of array) {
         const data = new FormData();
@@ -7,7 +8,7 @@ export const imageUploadFunction = async (array) => {
         data.append('upload_preset', 'le-zie');
         data.append('cloud_name', 'dmmv6gqnb');
 
-        const res = await fetch('https://api.cloudinary.com/v1_1/dmmv6gqnb/image/upload', {
+        const res = await fetch( urlCloud , {
             method: 'POST',
             body: data
         });

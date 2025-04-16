@@ -6,7 +6,8 @@ import { useProductRedirect } from '../../hooks/useProductRedirect.jsx'
 const Browse = ({ 
     paginatedProducts, 
     notFound, 
-    error, 
+    error,
+    isLoading,
     totalPages, 
     currentPage, 
     handlePageChange 
@@ -20,9 +21,13 @@ const Browse = ({
             <p>Something went wrong: {error}</p>
         </div>
         )}
+        {isLoading && (
+        <div className="loader">
+        </div>
+        )}
         {notFound && (
         <div className="error-message">
-            <p>PRODUCT NOT FOUND 🥲</p>
+            <p>SORRY - NOT FOUND 🚫</p>
         </div>
         )}
         <div className="product-container">
@@ -40,22 +45,23 @@ const Browse = ({
         </div>
 
         {totalPages > 1 && (
-        <div className="pagination-controls">
-            <button 
-            onClick={() => handlePageChange(currentPage - 1)} 
-            disabled={currentPage === 1}
-            >
-            Prev
-            </button>
-            {renderPageNumbers(totalPages, currentPage, handlePageChange)}
-            <button 
-            onClick={() => handlePageChange(currentPage + 1)} 
-            disabled={currentPage === totalPages}
-            >
-            Next
-            </button>
-        </div>
-        )}
+            <div className="pagination-controls">
+                
+                {currentPage > 1 && (
+                <button onClick={() => handlePageChange(currentPage - 1)}>
+                    Prev
+                </button>
+                )}
+
+                {renderPageNumbers(totalPages, currentPage, handlePageChange)}
+
+                {currentPage < totalPages && (
+                <button onClick={() => handlePageChange(currentPage + 1)}>
+                    Next
+                </button>
+                )}
+            </div>
+            )}
     </div>
     );
 };

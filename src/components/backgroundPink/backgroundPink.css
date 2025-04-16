@@ -1,0 +1,24 @@
+.pink-background {
+    width: 100%;
+    height: 450px;
+    position: relative;
+}
+
+.pink-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 1024px) {
+    .pink-background {
+    height: 350px;
+    }
+}
+
+@media (max-width: 600px) {
+    .pink-background {
+    height: 180px;
+    }
+}

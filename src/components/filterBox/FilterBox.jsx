@@ -1,10 +1,10 @@
-import "../../index.css"
-import './filterBox.css'
+import "../../index.css";
+import './filterBox.css';
 import { useState } from "react";
 
 const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {
     const [openDropdown, setOpenDropdown] = useState(null);
-    
+
     const getUniqueValues = (arr, key) => {
         const values = arr.map(item => item[key]);
         return [...new Set(values.flat())];
@@ -37,10 +37,15 @@ const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {
         setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
     };
 
-    const filterTypes = ["categories", "size", "season", "decade", "colors", "brand"];
+    const textSizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL"];
+    const numericSizes = Array(39).fill().map((_, i) => (32 + i).toString());
+    const allSizes = [...textSizes, ...numericSizes];
+
+    const filterTypes = ["decade", "categories", "season", "colors", "brand"];
 
     return (
         <div className="filters-container">
+
             <div className="filter-dropdown">
                 <details 
                     open={openDropdown === "price"} 
@@ -54,6 +59,7 @@ const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {
                         <label>
                             Min:
                             <input
+                                className="price-input"
                                 type="number"
                                 value={filters.price.min || ""}
                                 onChange={(e) => handlePriceChange("min", e.target.value)}
@@ -63,6 +69,7 @@ const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {
                         <label>
                             Max:
                             <input
+                                className="price-input"
                                 type="number"
                                 value={filters.price.max || ""}
                                 onChange={(e) => handlePriceChange("max", e.target.value)}
@@ -73,35 +80,61 @@ const FilterBox = ({ filters, products, setFilters, clearAllFilters }) => {
                 </details>
             </div>
 
-            {filterTypes.map((filterType) => {
-                const options = getUniqueValues(products, filterType);
-                return (
-                    <div key={filterType} className="filter-dropdown">
-                        <details 
-                            open={openDropdown === filterType}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                handleToggle(filterType);
-                            }}
-                        >
-                            <summary>{filterType.toUpperCase()}</summary>
-                            <div className="filter-options">
-                                {options.map((option, index) => (
-                                    <label key={index}>
+            <div className="filter-dropdown">
+                <details 
+                    open={openDropdown === "size"} 
+                    onClick={(e) => {
+                        e.preventDefault();
+                        handleToggle("size");
+                    }}
+                >
+                    <summary>SIZE</summary>
+                    <div className="filter-options">
+                                {allSizes.map((size, index) => (
+                                    <label key={index} onClick={(e) => e.stopPropagation()}>
                                         <input
                                             type="checkbox"
-                                            checked={filters[filterType].includes(option)}
-                                            onChange={() => toggleFilter(filterType, option)}
-                                            onClick={(e) => e.stopPropagation()}
+                                            checked={filters.size.includes(size)}
+                                            onChange={() => toggleFilter("size", size)}
                                         />
-                                        {option}
+                                        {size}
                                     </label>
                                 ))}
                             </div>
-                        </details>
-                    </div>
-                );
-            })}
+                </details>
+            </div>
+
+            {filterTypes.map((filterType) => {
+            const options = getUniqueValues(products, filterType);
+            return (
+                <div key={filterType} className="filter-dropdown">
+                    <details 
+                        open={openDropdown === filterType}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleToggle(filterType);
+                        }}
+                    >
+                        <summary>{filterType.toUpperCase()}</summary>
+                            <div className="filter-options">
+                            {options.map((option, index) => {
+                                const displayLabel = option === 0 ? "00" : option;
+                                return (
+                                <label key={index} onClick={(e) => e.stopPropagation()}>
+                                    <input
+                                    type="checkbox"
+                                    checked={filters[filterType].includes(option)}
+                                    onChange={() => toggleFilter(filterType, option)}
+                                    />
+                                    {displayLabel}
+                                </label>
+                                );
+                            })}
+                            </div>
+                    </details>
+                </div>
+            );
+        })}
 
             <div className="filter-dropdown">
                 <button onClick={clearAllFilters}>Remove All Filters</button>

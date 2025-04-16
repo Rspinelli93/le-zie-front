@@ -39,7 +39,7 @@ export const slideInRight = {
 // ⬆️ Slide in from the bottom
 export const swipeInBottom = {
     hidden: { y: "100%", opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 1, ease: "easeOut" } }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: "easeOut" } }
 };
 
 // ⬅️ Swipe in from the left edge of the screen

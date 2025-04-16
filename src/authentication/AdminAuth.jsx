@@ -1,9 +1,9 @@
 import { redirect } from 'react-router-dom';
 
 export const authenticateAdmin = async (email, password) => {
-    const API_URL = 'http://localhost:3210/admin/login';
+    const apiUrl = import.meta.env.VITE_API_URL;
 
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${apiUrl}/admin/login`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',

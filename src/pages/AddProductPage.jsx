@@ -20,7 +20,6 @@ const AddProductPage = () => {
     const handleProductSubmit = async (productData) => {
         await AddProduct(productData);
         alert('Product submitted!');
-        console.log('Submitted product:', productData);
     };
 
     return (

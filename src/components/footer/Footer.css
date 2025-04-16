@@ -1,5 +1,245 @@
+/*! USER FOOTER */
 .footer {
     background-color: #5e1675;
-    color: white;
-    padding: 20px;
+    color: #ffd23f;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
 }
+/** TITLE */
+.footer-title h2 {
+    font-size: 2.5rem; 
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 0 black;
+}
+/** NESWLETTER */
+.footer-newsletter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+.footer-newsletter h2 {
+    font-size: 1.7rem;
+    color: #ffd23f;
+}
+
+.footer-newsletter div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.subscribe-button {
+    color:#ffd23f;
+    background-color: #5e1675;
+    cursor: pointer;
+    transition: 0.2s ease all;
+    position: relative; /*! button animation */
+    top: 0; /*! Initial position */
+}
+.subscribe-button:hover {
+    top: -4px; /*! Moves the button up slightly */
+    box-shadow: 0 7px 0 0 black;
+    color: #ee4266
+}
+svg {
+    width: 40px;
+    height: 40px;
+    border-radius: 150px;
+}
+.footer-newsletter input {
+    padding: 15px;
+    border: 2px solid #ffd23f;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    width: 400px;
+    background-color: #f1c9ff;
+    color:black;
+    text-align: center; 
+}
+.footer-newsletter input::placeholder {
+    color: rgb(83, 83, 83);
+    text-align: center; 
+}
+/** CONTACT */
+
+.footer-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 200px;
+}
+.footer-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffd23f;
+    width: 180px;
+    max-width: fit-content;
+    transition: 0.2s ease all;
+}
+.footer-list li:hover {
+    color: #ee4266;
+}
+.footer-list li p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 10px;
+}
+.footer-list li h6 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 10px;
+    text-decoration: wavy underline;
+    text-decoration-color: #ee4266;
+    text-underline-offset: 10px;
+    transition: 0.2s ease all;
+}
+.footer-list li:hover h6 {
+    text-decoration-color: #ffd23f;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+.social-icons svg {
+    width: 40px;
+    height: 40px;
+    transition: 0.6s ease all;
+}
+.social-icons svg:hover {
+    scale: 1.5;
+}
+.footer-list li:nth-of-type(2) p {
+    cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+.footer {
+    padding: 60px;
+    gap: 60px;
+}
+
+.footer-title h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.footer-newsletter {
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footer-newsletter div {
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-newsletter input {
+    width: 300px;
+    font-size: 0.85rem;
+    padding: 12px;
+}
+
+.footer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.footer-list li {
+    width: 160px;
+}
+
+.footer-list li h6 {
+    font-size: 1.3rem;
+    text-underline-offset: 8px;
+}
+
+.footer-list li p {
+    font-size: 1rem;
+}
+
+.social-icons svg {
+    width: 32px;
+    height: 32px;
+}
+}
+
+@media (max-width: 600px) {
+.footer {
+    padding: 60;
+    gap: 40px;
+}
+
+.footer-title h2 {
+    font-size: 1.6rem;
+    line-height: 1.9;
+}
+.footer-newsletter h2 {
+    font-size: 1.1rem;
+}
+
+.footer-newsletter input {
+    width: 120%;
+    font-size: 0.7rem;
+    padding: 8px;
+}
+
+.footer-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+
+}
+
+.footer-list li {
+    width: 100%;
+    max-width: 250px;
+}
+
+.footer-list li h6 {
+    font-size: 1.1rem;
+    text-underline-offset: 6px;
+}
+
+.footer-list li p {
+    font-size: 0.8rem;
+}
+
+.social-icons {
+    gap: 15px;
+}
+
+.social-icons svg {
+    width: 28px;
+    height: 28px;
+}
+}
+
+
+/*! ADMIN FOOTER */
+.footer-admin [alt="logo_lezie"] {
+    width: 500px;
+    margin: 50px;
+}
+
+@media (max-width: 600px) {
+    .footer-admin [alt="logo_lezie"] {
+        width: 300px;
+        margin: 30px;
+    }
+}
+

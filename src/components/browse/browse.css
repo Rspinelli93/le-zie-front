@@ -1,0 +1,71 @@
+.collection-clothes {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--color-primary);
+    gap: 20px;
+    padding: 50px;
+}
+
+/** PAGINATION */
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+    .pagination-controls button {
+    padding: 10px 16px;
+    border: 2px solid black;
+    background-color: var(--color-quaternary);
+    color: var(--color-primary);
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    top: 0;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: var(--color-secondary);
+    color: var(--color-tertiary);
+    top: -2px;
+    box-shadow: 0 4px 0 0 black;
+}
+
+.pagination-controls button:disabled {
+    background-color: var(--color-tertiary);
+    color: var(--color-secondary);
+    border-color: black;
+    opacity: 0.9;
+    cursor: default;
+    box-shadow: 0 4px 0 0 black;
+}
+
+.pagination-controls .page-number {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-color: var(--color-quaternary);
+    color: var(--color-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease all;
+}
+
+@media (max-width: 600px) {
+    .pagination-controls {
+        gap: 6px;
+        margin-top: 20px;
+    }
+    .pagination-controls button,
+    .pagination-controls .page-number {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+    }
+}
