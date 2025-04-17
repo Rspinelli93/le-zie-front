@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getValidAdminToken } from '../authentication/adminAuth';
+import { getValidAdminToken } from '../authentication/AdminAuth';
 
 const AuthContext = createContext();
 
