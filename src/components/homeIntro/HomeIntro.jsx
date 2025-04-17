@@ -21,7 +21,7 @@ const HomeIntro = () => {
                 variants={slideInLeft}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 >
                 VINTAGE FINDS
             </motion.h1>
@@ -29,7 +29,7 @@ const HomeIntro = () => {
                 variants={slideInRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 >
                 MODERN VIBES
             </motion.h1>
@@ -38,7 +38,7 @@ const HomeIntro = () => {
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 >
                 <p>Geneva’s Hidden Gems –<br/>
                 Stylish, Sustainable, and Pre-Loved</p>
@@ -50,20 +50,20 @@ const HomeIntro = () => {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         >
             <motion.h2
                 variants={swipeInBottom}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false }}
+                viewport={{ once: true }}
             >WE BELIEVE IN SECOND CHANCES</motion.h2>
             <ul>
                 <motion.li
                     variants={zoomIn}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                 >
                     <img src={Handpicked} alt="handpicked_logo" />
                     <p>Every piece handpicked with love</p>
@@ -72,7 +72,7 @@ const HomeIntro = () => {
                     variants={zoomIn}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                 >
                     <img src={Sustainable} alt="sustainability_logo" />
                     <p>Sustainable choices, naturally made</p>
@@ -81,7 +81,7 @@ const HomeIntro = () => {
                     variants={zoomIn}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                 >
                     <img src={Ecology} alt="ecology_logo" />
                     <p>Worn before, loved again</p>

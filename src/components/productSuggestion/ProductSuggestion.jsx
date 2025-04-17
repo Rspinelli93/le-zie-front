@@ -48,7 +48,7 @@ const ProductSuggestion = ({title, filterProp}) => {
                             variants={fadeInUp}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: false }}
+                            viewport={{ once: true }}
                             >
                             <img src={product.images[0]} alt={product.name}/>
                             <h6>{product.name}</h6>
