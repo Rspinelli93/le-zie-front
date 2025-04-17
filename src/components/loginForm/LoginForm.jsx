@@ -2,7 +2,7 @@ import "../../index.css"
 import "./loginForm.css"
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { authenticateAdmin } from '../../authentication/adminAuth'
+import { authenticateAdmin } from '../../authentication/AdminAuth'
 
 const LoginAdmin = () => {
     const navigate = useNavigate();
