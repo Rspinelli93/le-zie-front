@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     background-color: var(--color-quaternary);
+    height: 100vh;
 }
 .login-admin-container {
     background-color: var(--color-primary);

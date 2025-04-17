@@ -46,12 +46,12 @@ const HomeIntro = () => {
             </motion.div>
         </div>
         <motion.div 
-        className="home-motto"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        >
+            className="home-motto"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            >
             <motion.h2
                 variants={swipeInBottom}
                 initial="hidden"

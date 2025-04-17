@@ -11,7 +11,7 @@ import { popIn, staggerContainer, fadeInUp } from "../../utils/motionEffects.js"
 
 const Footer = () => {
     const { footerRef } = useScroll();
-    const placeholder = 'Type your email to subscribe to our newsletter'
+    const placeholder = 'Subscribe to our Newsletter'
     const [ text, setText ] = useState(placeholder)
     const isAdmin = location.pathname.startsWith('/admin')
     const [ email, setEmail ] = useState('')
