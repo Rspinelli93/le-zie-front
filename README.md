@@ -82,6 +82,7 @@ These routes are restricted to authenticated admin users. If try to access a rou
 
 Planned features for future release:
 
+- Adding French to the languages of the page
 - Add full **shopping functionality**
 - Integrate **payment methods**
 - Shopping cart and checkout flow

@@ -3,7 +3,6 @@ import "./loginForm.css"
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { authenticateAdmin } from '../../authentication/adminAuth'
-import { div } from "framer-motion/client";
 
 const LoginAdmin = () => {
     const navigate = useNavigate();
