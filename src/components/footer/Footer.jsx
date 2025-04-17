@@ -1,15 +1,13 @@
 import "../../index.css"
-import './footer.css'
+import './Footer.css'
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { subscribeToNewsletter } from "../../utils/newsletterSubscription.js";
 
-import { FaArrowAltCircleRight, FaFacebook } from "react-icons/fa";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { useScroll } from '../../contexts/ScrollContext';
 import { popIn, staggerContainer, fadeInUp } from "../../utils/motionEffects.js";
-
-import Logo from "../../assets/icons/logo_lezie_simple.png"
 
 const Footer = () => {
     const { footerRef } = useScroll();
