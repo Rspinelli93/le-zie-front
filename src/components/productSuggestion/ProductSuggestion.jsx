@@ -16,13 +16,13 @@ const ProductSuggestion = ({title, filterProp}) => {
     useEffect(() => {
         setIsLoading(true)
         GetProducts()
-            .then((data) => {
-                setIsLoading(false)
-                const filteredProducts = filterProp ? filterProp(data) : data;
-                setProducts(filteredProducts);
-            })
-            .catch((err) => setError(err.message));
+        .then((data) => {
+            const filteredProducts = filterProp ? filterProp(data) : data;
+            setProducts(filteredProducts);
             setIsLoading(false)
+        })
+        .catch((err) => setError(err.message));
+        setIsLoading(false)
     }, [filterProp]);
 
     return (

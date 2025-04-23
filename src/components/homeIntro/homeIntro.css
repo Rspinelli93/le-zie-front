@@ -15,14 +15,18 @@
 }
 .home-intro h1{
     font-size: 3.9rem;
-    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 80%;
     margin: 0px;
     text-shadow: 0 3px 0 black;
 }
-.home-intro > h1:nth-of-type(1) {
+.home-intro > h1 span:nth-of-type(1) {
     margin-right: 500px
 }
-.home-intro > h1:nth-of-type(2) {
+.home-intro > h1 span:nth-of-type(2) {
     margin-left: 500px
 }
 .intro-nav{
@@ -57,7 +61,19 @@
     box-shadow: 0 8px 0 1px black;
     border-color: #ee4266;
 }
-
+@media (max-width: 1315px) {
+    .home-intro h1 {
+        font-size: 3.5rem;
+        width: 80%;
+    }
+    
+    .home-intro > h1 span:nth-of-type(1) {
+        margin-right: 300px;
+    }
+    .home-intro > h1 span:nth-of-type(2) {
+        margin-left: 300px;
+    }
+}
 @media (max-width: 1024px) {
 .home-intro h1 {
     font-size: 3.2rem;
@@ -65,8 +81,8 @@
     margin: 10px auto;
 }
 
-.home-intro > h1:nth-of-type(1),
-.home-intro > h1:nth-of-type(2) {
+.home-intro > h1 span:nth-of-type(1),
+.home-intro > h1 span:nth-of-type(2) {
     margin: 10px;
 }
 

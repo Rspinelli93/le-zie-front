@@ -2,6 +2,11 @@
 
 This is the **frontend** of a vintage clothing web application. It allows **users** to browse a curated collection of vintage clothing items. On the **admin** side, it provides tools to manage the inventory by adding, editing, deleting, and marking items as sold. The frontend connects to a backend database via API calls and handles all interactions with both users and admins through clearly defined routes and dynamic interfaces.
 
+### Get Started:
+
+- [Home](https://le-zie-front-dbje-rspinelli93s-projects.vercel.app/)
+- [Admin Login](https://le-zie-front-dbje-rspinelli93s-projects.vercel.app/admin/login)
+- **Credentials:** 📧email: `info@lezie.com` | 🔑pass: `holaweareleZie25`
 ---
 
 ## 🧰 Tech Stack

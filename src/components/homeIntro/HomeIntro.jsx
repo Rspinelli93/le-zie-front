@@ -17,22 +17,24 @@ const HomeIntro = () => {
         <>
         <div className="home-intro">
             <img src={Logo} alt="logo_lezie" />
-            <motion.h1
-                variants={slideInLeft}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                >
-                VINTAGE FINDS
-            </motion.h1>
-            <motion.h1
-                variants={slideInRight}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                >
-                MODERN VIBES
-            </motion.h1>
+            <h1>
+                <motion.span  
+                    variants={slideInLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    >
+                    VINTAGE FINDS
+                </motion.span>
+                <motion.span
+                    variants={slideInRight}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    >
+                    MODERN VIBES
+                </motion.span>
+            </h1>
             <motion.div 
                 className="intro-nav"
                 variants={fadeInUp}
