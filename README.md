@@ -94,6 +94,12 @@ Planned features for future release:
 
 ---
 
+## 🔗 Link to Backend Repo
+
+- [BackEnd](https://github.com/Rspinelli93/le-zie)
+
+---
+
 ## 🔗 Project Resources
 
 - [🖼️ Wireframes & UI Flow](https://richiscouses.my.canva.site/lezie#home)  
