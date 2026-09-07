@@ -1,111 +1,59 @@
-# 🧥 LE ZIE - Vintage Clothing Web App – Frontend
+# Le Zie · Online showroom
 
-This is the **frontend** of a vintage clothing web application. It allows **users** to browse a curated collection of vintage clothing items. On the **admin** side, it provides tools to manage the inventory by adding, editing, deleting, and marking items as sold. The frontend connects to a backend database via API calls and handles all interactions with both users and admins through clearly defined routes and dynamic interfaces.
+React frontend for a second-hand clothing showroom in Geneva. Visitors can browse and filter the collection, inspect product details, and subscribe to the newsletter. An administration area supports adding, editing, marking, and removing products.
 
-### Get Started:
+**Collection:** Featured applications · [Project directory](https://github.com/Rspinelli93/Rspinelli93/blob/main/PROJECTS.md)
 
-- [Home](https://le-zie-front-dbje-rspinelli93s-projects.vercel.app/)
-- [Admin Login](https://le-zie-front-dbje-rspinelli93s-projects.vercel.app/admin/login)
-- **Credentials:** 📧email: `info@lezie.com` | 🔑pass: `holaweareleZie25`
----
+**Related repository:** [le-zie](https://github.com/Rspinelli93/le-zie)
 
-## 🧰 Tech Stack
+## Stack
 
-- **React** – JavaScript library for building user interfaces  
-- **React DOM** – Entry point for rendering React components to the DOM  
-- **React Router DOM** – Declarative routing for React web applications  
-- **Framer Motion** – Animation library for React components  
-- **React Icons** – Icon toolkit for including popular icons in your app  
-- **dotenv** – Manages environment variables securely in development
+`dotenv`, `framer-motion`, `react`, `react-dom`, `react-icons`, `react-router-dom`, `vite`.
 
-### 🔗 External Services & APIs
+## Run locally
 
-- **Cloudinary** – Image hosting and media storage solution (used for uploading and delivering product images)  
-- **MailerLite** – Email marketing platform used for newsletter subscriptions
+Install Node.js and npm, then run:
 
----
+```bash
+git clone https://github.com/Rspinelli93/le-zie-front.git
+cd le-zie-front
+npm install
+npm run dev
+```
 
-## 🧑‍💻 User Routes
+Open the local URL printed by Vite. `npm run build` creates the production bundle and `npm run preview` serves that bundle locally.
 
-These are public-facing routes that regular users can access to browse and view clothing items.
+## Configuration
 
-- `/`  
-  General **landing page** with branding, featured items, or introductory content.
+The source reads these environment variables. Configure them locally before starting the relevant integrations; values are not included here.
 
-- `/collection`  
-  Displays a list or grid of **all available clothing items** from the database.
+| Variable | Used by |
+| --- | --- |
+| `VITE_API_CLOUDINARY` | [`src/utils/cloudinaryUpload.js`](src/utils/cloudinaryUpload.js) |
+| `VITE_API_URL` | [`src/authentication/AdminAuth.jsx`](src/authentication/AdminAuth.jsx), [`src/service/admin/AddProduct.jsx`](src/service/admin/AddProduct.jsx) |
 
-- `/collection/:id`  
-  Dynamic route that shows **details of a selected product**
+## Available commands
 
----
+| Command | Script in package.json |
+| --- | --- |
+| `npm run dev` | `vite` |
+| `npm run build` | `vite build` |
+| `npm run lint` | `eslint .` |
+| `npm run preview` | `vite preview` |
 
-## 🔐 Admin Routes
+## Implementation notes
 
-These routes are restricted to authenticated admin users. If try to access a route without auth, it will redirect to `admin/login`
+Set `VITE_API_URL=http://localhost:3210` in a local `.env` file for the companion backend. `VITE_API_CLOUDINARY` is the upload endpoint consumed by `src/utils/cloudinaryUpload.js`; image uploads also depend on the Cloudinary configuration in that file. Start the backend before testing catalogue and administration requests.
 
-- `/admin/login`  
-  Login page for admin access.
+## Repository guide
 
-- `/admin/collection`  
-  Admin's view of the clothing inventory:
-  - Browse and Search through all the products
-
-- `/admin/collection/:id`  
-  Detailed view of a single item for the admin:
-  - Editable form to update product info
-  - "Delete" and "Mark as Sold" options
-
-- `/admin/add`  
-  Page to **add new clothing items** to the database. The form includes:
-  - **Name** (text input)
-  - **Categories** (checkboxes — allow multiple)
-  - **Colors** (checkboxes — allow multiple)
-  - **Images** (file upload — allow multiple images per product)
-  - **Decade** (dropdown)
-  - **Brand** (text input)
-  - **Price** (number input)
-  - **Size** (dropdown)
-  - **Season** (dropdown — only two options)
+- [`eslint.config.js`](eslint.config.js)
+- [`index.html`](index.html)
+- [`package.json`](package.json)
+- [`src/`](src/)
+- [`vercel.json`](vercel.json)
+- [`vite.config.js`](vite.config.js)
 
 ---
 
-## ⚙️ Functionality
-
-- Fully dynamic routing using product IDs (`/collection/:id`, `/admin/collection/:id`)
-- Image upload support for multiple files per product
-- Complete CRUD functionality through frontend API calls:
-  - Create new product
-  - Read/display product data
-  - Update/edit existing product
-  - Delete product or mark as sold
-- Role-based navigation and view logic (admin vs. user)
-
----
-
-## 🚀 To-Do – Version 2.0
-
-Planned features for future release:
-
-- Adding French to the languages of the page
-- Add full **shopping functionality**
-- Integrate **payment methods**
-- Shopping cart and checkout flow
-
----
-
-## 🔗 Link to Backend Repo
-
-- [BackEnd](https://github.com/Rspinelli93/le-zie)
-
----
-
-## 🔗 Project Resources
-
-- [🖼️ Wireframes & UI Flow](https://richiscouses.my.canva.site/lezie#home)  
-  Visual overview of the layout, structure, and user interactions.
-
-- [🗂️ Trello Planning Board](https://trello.com/b/QqDnmPn8/le-zie)  
-  Task management and development roadmap.
-
-- [📬 Postman](https://documenter.getpostman.com/view/41161776/2sB2cX91qN)
+[Back to my GitHub profile](https://github.com/Rspinelli93)
